@@ -23,6 +23,7 @@ services:
     volumes:
       - nightscout-mongo:/data/db
       - nightscout-mongo-backup:/backup
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
 
 volumes:
   nightscout-mongo:

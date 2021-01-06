@@ -27,8 +27,12 @@ cd nightscout
 ```
 Rename mongo.env.example and nightscout.env.example to mongo.env and nightscout.env respectively and adjust as needed.
 
-- [ ] TODO: Add Mongo user creation script and steps
+Initialize MongoDB if this is the very first run:
+```bash
+docker-compose up -d mongo
+```
 
+Once database is creted start as normal docker-compose stack.
 Start the containers
 ```bash
 docker-compose up -d
