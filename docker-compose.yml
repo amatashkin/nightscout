@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  nightscout:
+    image: amatashkin/nightscout:latest
+    container_name: nightscout
+    restart: unless-stopped
+    networks:
+      - net-bridge
+    depends_on:
+      - mongo
+    env_file: nightscout.env
+    ports:
+      - '1337:1337'
+
+  mongo:
+    image: mongo:4.2
+    container_name: nightscout-mongo
+    restart: unless-stopped
+    networks:
+      - net-bridge
+    env_file: mongo.env
+    volumes:
+      - nightscout-mongo:/data/db
+      - nightscout-mongo-backup:/backup
+
+volumes:
+  nightscout-mongo:
+  nightscout-mongo-backup:
+
+networks:
+  net-bridge:
+    external: true
