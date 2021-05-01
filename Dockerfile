@@ -1,6 +1,5 @@
 
 FROM node:12-alpine
-LABEL LABEL Maintainer="Alexey Matashkin <amatashkin@gmail.com>" Description="Nightscout" Version="210106"
 
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
@@ -24,3 +23,12 @@ USER node
 EXPOSE 1337
 
 CMD ["node", "server.js"]
+
+# Build arguments
+ARG BUILD_VERSION
+
+# Labels
+LABEL \
+    Maintainer="Alexey Matashkin <amatashkin@gmail.com>" \
+    Description="Nightscout" \
+    Version=${BUILD_VERSION}

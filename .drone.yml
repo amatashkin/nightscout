@@ -1,0 +1,18 @@
+name: default
+
+kind: pipeline
+type: docker
+
+steps:
+- name: publish
+  image: plugins/docker
+  settings:
+    repo: registry.amatashkin.com/nightscout
+    tags: [ "${DRONE_COMMIT_SHA:0:7}","latest" ]
+    registry: registry.amatashkin.com
+    build_args:
+    - "BUILD_VERSION=210502"
+    username:
+      from_secret: docker_local_username
+    password:
+      from_secret: docker_local_password
